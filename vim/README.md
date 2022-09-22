@@ -1,16 +1,30 @@
-`git clone git@github.com:luetkemj/vim.git ~/.vim`
+Clone dotfiles project
+`git clone git@github.com:luetkemj/dotfiles.git ~/.dotfiles`
 
-create a .vimrc that points to the actual .vimrc file in the .vim directory
-
+Create .vimrc file here:
 `touch ~/.vimrc`
 
-.vimrc contents:
+With the following contents:
+`source ~/.dotfiles/vim/.vimrc`
 
-`source ~/.vim/.vimrc`
+Setup .vim directory:
 
-install plugins with Plug
+```
+~/
+  .vim
+    autoload
+    backup
+    colors
+    plugged
+```
+
+Follow directions to install plug https://github.com/junegunn/vim-plug
+
+Install plugins with Plug by running the following command in vim
 
 `:PlugInstall`
+
+To go from vim to nvim, install nvim and run this from nvim `:help nvim-from-vim`
 
 ```
                     .
