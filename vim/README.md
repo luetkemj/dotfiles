@@ -18,7 +18,8 @@ Setup .vim directory:
     plugged
 ```
 
-Follow directions to install plug https://github.com/junegunn/vim-plug
+[Download](https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim) plug.vim and place it in the autoload directory
+
 
 Install plugins with Plug by running the following command in vim
 
