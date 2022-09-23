@@ -59,6 +59,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
 Plug 'prettier/vim-prettier', { 'do': 'npm install --frozen-lockfile --production' }
+Plug 'tpope/vim-surround'
 
 call plug#end()
 
