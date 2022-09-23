@@ -1,6 +1,7 @@
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
 
+
 " Enable type file detection. Vim will be able to try to detect the type of file in use.
 filetype on
 
@@ -95,4 +96,15 @@ nnoremap <C-p> :Files<CR>
 nnoremap <C-o> :Buffers<CR>
 nnoremap <C-g> :GFiles<CR>
 nnoremap <C-f> :Rg 
+
+" Ps = 0  -> blinking block.
+" Ps = 1  -> blinking block (default).
+" Ps = 2  -> steady block.
+" Ps = 3  -> blinking underline.
+" Ps = 4  -> steady underline.
+" Ps = 5  -> blinking bar (xterm).
+" Ps = 6  -> steady bar (xterm).
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[1 q"
+
 
