@@ -25,11 +25,16 @@ set hlsearch
 
 set tw=80
 
+" allows switching of buffers without saving
+set hidden
+
 " this centers the cursor on screen when possible
 set scrolloff=999
 
 " add vertical line at col
 set colorcolumn=81
+
+set signcolumn=yes
 
 let g:fzf_layout = { 'down': '40%' }
 call plug#begin()
