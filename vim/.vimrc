@@ -63,7 +63,7 @@ Plug 'tpope/vim-surround'
 
 call plug#end()
 
-let g:prettier#autoformat = 1
+let g:prettier#autoformat = 0
 let g:prettier#autoformat_require_pragma = 0
 
 let g:gruvbox_contrast_dark= 'hard'
@@ -108,4 +108,5 @@ nnoremap <C-f> :Rg
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[1 q"
 
-
+" allow yanking to sys clipboard
+set clipboard=unnamed
