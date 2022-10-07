@@ -60,6 +60,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
 Plug 'prettier/vim-prettier', { 'do': 'npm install --frozen-lockfile --production' }
 Plug 'tpope/vim-surround'
+Plug 'aserebryakov/vim-todo-lists'
 
 call plug#end()
 
@@ -68,6 +69,12 @@ let g:prettier#autoformat_require_pragma = 0
 
 let g:gruvbox_contrast_dark= 'hard'
 colorscheme gruvbox 
+
+" vim-todo-lists options
+let g:VimTodoListsMoveItems = 0
+let g:VimTodoListsDatesEnabled = 1
+let g:VimTodoListsDatesFormat = "%y%m%d %T"
+" %y%m%d
 
 " lightline options
 " always show status bar (lightline) 
