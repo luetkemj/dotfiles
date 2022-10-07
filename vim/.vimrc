@@ -123,6 +123,7 @@ set clipboard=unnamed
 map <leader>h :noh<CR>
 map <leader>f :Prettier<CR>
 map <leader>r :so ~/.dotfiles/vim/.vimrc<CR>
-map <leader>gaa :G add .<CR>
-map <leader>gca :G commit .<CR>
-map <leader>gst :G status<CR>
+map <leader>ga :G add .<CR>
+map <leader>gc :G commit .<CR>
+map <leader>gs :G status<CR>
+map <leader>gd :G diff --cached<CR>
