@@ -1,7 +1,6 @@
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
 
-
 " Enable type file detection. Vim will be able to try to detect the type of file in use.
 filetype on
 
@@ -30,6 +29,9 @@ set scrolloff=999
 
 " add vertical line at col
 set colorcolumn=81
+
+set showcmd
+let mapleader = " "
 
 let g:fzf_layout = { 'down': '40%' }
 call plug#begin()
@@ -117,3 +119,10 @@ let &t_EI = "\e[1 q"
 
 " allow yanking to sys clipboard
 set clipboard=unnamed
+
+map <leader>h :noh<CR>
+map <leader>f :Prettier<CR>
+map <leader>r :so ~/.dotfiles/vim/.vimrc<CR>
+map <leader>gaa :G add .<CR>
+map <leader>gca :G commit .<CR>
+map <leader>gst :G status<CR>
