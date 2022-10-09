@@ -73,7 +73,7 @@ let g:gruvbox_contrast_dark= 'hard'
 colorscheme gruvbox 
 
 " vim-todo-lists options
-let g:VimTodoListsMoveItems = 0
+let g:VimTodoListsMoveItems = 1
 let g:VimTodoListsDatesEnabled = 1
 let g:VimTodoListsDatesFormat = "%y%m%d %T"
 " %y%m%d
