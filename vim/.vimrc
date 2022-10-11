@@ -1,3 +1,4 @@
+echo ">^.^<"
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
 
@@ -62,11 +63,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
 Plug 'prettier/vim-prettier', { 'do': 'npm install --frozen-lockfile --production' }
 Plug 'tpope/vim-surround'
-Plug 'aserebryakov/vim-todo-lists'
-
+" Plug 'aserebryakov/vim-todo-lists'
+Plug 'luetkemj/vim-todo-lists'
 call plug#end()
 
-let g:prettier#autoformat = 0
+let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
 
 let g:gruvbox_contrast_dark= 'hard'
@@ -76,6 +77,7 @@ colorscheme gruvbox
 let g:VimTodoListsMoveItems = 1
 let g:VimTodoListsDatesEnabled = 1
 let g:VimTodoListsDatesFormat = "%y%m%d %T"
+let g:VimTodoListsKeepSameIndent = 0
 " %y%m%d
 
 " lightline options
@@ -127,3 +129,20 @@ map <leader>ga :G add .<CR>
 map <leader>gc :G commit .<CR>
 map <leader>gs :G status<CR>
 map <leader>gd :G diff --cached<CR>
+
+"todo emoji
+function! MakeTodoEmojiWork()
+  execute "normal! o🏠 [ ] - "
+  execute "normal! a"
+endfunction
+
+function! MakeTodoEmojiComplete()
+  normal! 0f[lsx
+endfunction
+
+nnoremap <leader>tr :call MakeTodoEmojiWork()<ESC>a<CR>
+nnoremap <leader>tw :call MakeTodoEmojiWork()<cr>
+nnoremap <leader>tt :call MakeTodoEmojiComplete()<cr>
+
+" open vimrc in a splt for quick editing
+nnoremap <leader>ev :vsplit ~/.dotfiles/vim/.vimrc<cr>
