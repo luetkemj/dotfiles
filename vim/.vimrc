@@ -20,21 +20,22 @@ set number
 " makes numbers on the left-hand side relative to cursor
 set relativenumber
 
-" highlight search results
-set hlsearch
-
-set tw=80
-
 " this centers the cursor on screen when possible
 set scrolloff=999
 
 " add vertical line at col
 set colorcolumn=81
 
+" show indicator in bottom right when <leader> key is pressed
 set showcmd
+
+" set leader key to <space>
 let mapleader = " "
 
+" fzf gui to use 40% of bottom of buffer
 let g:fzf_layout = { 'down': '40%' }
+
+" install plugins with plug
 call plug#begin()
 " The default plugin directory will be as follows:
 "   - Vim (Linux/macOS): '~/.vim/plugged'
@@ -67,31 +68,40 @@ Plug 'tpope/vim-surround'
 Plug 'luetkemj/vim-todo-lists'
 call plug#end()
 
+" Plugin settings
+"
+" Prettier
+" auto format on save
 let g:prettier#autoformat = 1
+" don't require @prettier pragma at top of files
 let g:prettier#autoformat_require_pragma = 0
-
-let g:gruvbox_contrast_dark= 'hard'
+"
+" Gruvbox (colorscheme)
+" set colorscheme to grubox
 colorscheme gruvbox 
-
-" vim-todo-lists options
+" gruvbox variant
+let g:gruvbox_contrast_dark= 'hard'
+"
+" vim-todo-lists 
+"
+" Move items on complete
 let g:VimTodoListsMoveItems = 1
+" Add dates to new items
 let g:VimTodoListsDatesEnabled = 1
+" Format for dates 221011 20:49:15
 let g:VimTodoListsDatesFormat = "%y%m%d %T"
+" something to do with nested todos but honestly IDK - transition away from this
+" plugin anyways
 let g:VimTodoListsKeepSameIndent = 0
-" %y%m%d
-
-" lightline options
+"
+" lightline 
+" 
 " always show status bar (lightline) 
 set laststatus=2
-" lightline includes the mode so disable the default
+" lightline includes the mode so disable the default vim display
 set noshowmode
-
-" Start NERDTree and leave the cursor in it.
-" autocmd VimEnter * NERDTree
-
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
+"
+" Enables preview window for Rg global search results (straight from docs)
 " Rg with preview window
 " https://github.com/junegunn/fzf.vim#example-rg-command-with-preview-window
 command! -bang -nargs=* Rg
@@ -99,6 +109,7 @@ command! -bang -nargs=* Rg
   \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview(), <bang>0)
 
+" Remaps
 " Move to beginning/end of line without taking my fingers off of home row:
 nnoremap H ^
 nnoremap L $
@@ -107,8 +118,15 @@ nnoremap L $
 inoremap <nowait> jk <esc>
 
 " badhabits
-let g:fzf_commits_log_options = '--date=relative --pretty=format:"%h%x09%an%x09%ad%x09%s"'
+" no-op some default keys so I learn the remaps
+inoremap <esc> <nop>
+inoremap <Left> <nop>
+inoremap <Right> <nop>
+inoremap <Up> <nop>
+inoremap <Down> <nop>
 
+" git blame - update the log output to something legible
+let g:fzf_commits_log_options = '--date=relative --pretty=format:"%h%x09%an%x09%ad%x09%s"'
 
 " fzf and ripgrep keymaps
 nnoremap <C-p> :Files<CR>
@@ -116,6 +134,7 @@ nnoremap <C-o> :Buffers<CR>
 nnoremap <C-g> :GFiles<CR>
 nnoremap <C-f> :Rg 
 
+" these are really only used in Vim - neovim has reasonable defaults
 " Ps = 0  -> blinking block.
 " Ps = 1  -> blinking block (default).
 " Ps = 2  -> steady block.
@@ -126,18 +145,23 @@ nnoremap <C-f> :Rg
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[1 q"
 
-" allow yanking to sys clipboard
+" allow yanking to sys clipboard (so I can yank and <C-v> outside of vim)
 set clipboard=unnamed
 
+" clear highlighting
 map <leader>h :noh<CR>
+" format file with prettier
 map <leader>f :Prettier<CR>
+" source vimrc (use after saving changes to vimrc so I don't have to manually
+" reastart)
 map <leader>r :so ~/.dotfiles/vim/.vimrc<CR>
+" remap vim fugitive commands to something closer to my bash aliases
 map <leader>ga :G add .<CR>
 map <leader>gc :G commit .<CR>
 map <leader>gs :G status<CR>
 map <leader>gd :G diff --cached<CR>
 
-"todo emoji
+"todo emoji (my own todo plugin)
 function! MakeTodoEmojiComplete()
   normal! mz
   normal! 0f[lsx
@@ -148,7 +172,6 @@ function! MakeTodoEmojiIncomplete()
   normal! 0f[ls 
   normal! `z
 endfunction
-
 
 nnoremap <leader>tt :call MakeTodoEmojiComplete()<cr>
 nnoremap <leader>tr :call MakeTodoEmojiIncomplete()<cr>
