@@ -103,6 +103,13 @@ command! -bang -nargs=* Rg
 nnoremap H ^
 nnoremap L $
 
+" remap escape so I don't have to stretch so dang much. apparently
+inoremap <nowait> jk <esc>
+
+" badhabits
+let g:fzf_commits_log_options = '--date=relative --pretty=format:"%h%x09%an%x09%ad%x09%s"'
+
+
 " fzf and ripgrep keymaps
 nnoremap <C-p> :Files<CR>
 nnoremap <C-o> :Buffers<CR>
@@ -131,18 +138,23 @@ map <leader>gs :G status<CR>
 map <leader>gd :G diff --cached<CR>
 
 "todo emoji
-function! MakeTodoEmojiWork()
-  execute "normal! o🏠 [ ] - "
-  execute "normal! a"
-endfunction
-
 function! MakeTodoEmojiComplete()
+  normal! mz
   normal! 0f[lsx
+  normal! `z
+endfunction
+function! MakeTodoEmojiIncomplete()
+  normal! mz
+  normal! 0f[ls 
+  normal! `z
 endfunction
 
-nnoremap <leader>tr :call MakeTodoEmojiWork()<ESC>a<CR>
-nnoremap <leader>tw :call MakeTodoEmojiWork()<cr>
+
 nnoremap <leader>tt :call MakeTodoEmojiComplete()<cr>
+nnoremap <leader>tr :call MakeTodoEmojiIncomplete()<cr>
+nnoremap <leader>th o🏠 [ ] - <esc>a
+nnoremap <leader>tw o💻 [ ] - <esc>a
+nnoremap <leader>tp o😶 [ ] - <esc>a
 
 " open vimrc in a splt for quick editing
 nnoremap <leader>ev :vsplit ~/.dotfiles/vim/.vimrc<cr>
