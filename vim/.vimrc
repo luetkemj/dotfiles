@@ -23,8 +23,6 @@ set relativenumber
 " highlight search results
 set hlsearch
 
-set tw=80
-
 " allows switching of buffers without saving
 set hidden
 
@@ -114,6 +112,17 @@ let g:VimTodoListsKeepSameIndent = 0
 set laststatus=2
 " lightline includes the mode so disable the default vim display
 set noshowmode
+" show current git branch in lightline
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
+      \ }
 "
 " Enables preview window for Rg global search results (straight from docs)
 " Rg with preview window
@@ -168,12 +177,6 @@ map <leader>f :Prettier<CR>
 " source vimrc (use after saving changes to vimrc so I don't have to manually
 " reastart)
 map <leader>r :so ~/.dotfiles/vim/.vimrc<CR>
-" remap vim fugitive commands to something closer to my bash aliases
-map <leader>ga :G add .<CR>
-map <leader>gc :G commit .<CR>
-map <leader>gs :G status<CR>
-map <leader>gd :G diff --cached<CR>
-
 "todo emoji (my own todo plugin)
 function! MakeTodoEmojiComplete()
   normal! mz
