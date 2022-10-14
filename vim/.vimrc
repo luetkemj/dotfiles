@@ -64,14 +64,19 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
 Plug 'prettier/vim-prettier', { 'do': 'npm install --frozen-lockfile --production' }
 Plug 'tpope/vim-surround'
-" Plug 'aserebryakov/vim-todo-lists'
 Plug 'luetkemj/vim-todo-lists'
+Plug 'mattn/emmet-vim'
+Plug 'mattn/webapi-vim'
 call plug#end()
 
 " Plugin settings
 "
+" emmet
+" allow for custom snippets in a json file
+"let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.dotfiles/.snippets_custom.json')),"\n"))
+"
 " Prettier
-" auto format on save
+" auto format on sa
 let g:prettier#autoformat = 1
 " don't require @prettier pragma at top of files
 let g:prettier#autoformat_require_pragma = 0
@@ -114,12 +119,11 @@ command! -bang -nargs=* Rg
 nnoremap H ^
 nnoremap L $
 
-" remap escape so I don't have to stretch so dang much. apparently
-inoremap <nowait> jk <esc>
+" escape with 'jk'
+inoremap jk <esc>
 
 " badhabits
 " no-op some default keys so I learn the remaps
-inoremap <esc> <nop>
 inoremap <Left> <nop>
 inoremap <Right> <nop>
 inoremap <Up> <nop>
@@ -129,10 +133,10 @@ inoremap <Down> <nop>
 let g:fzf_commits_log_options = '--date=relative --pretty=format:"%h%x09%an%x09%ad%x09%s"'
 
 " fzf and ripgrep keymaps
-nnoremap <C-p> :Files<CR>
-nnoremap <C-o> :Buffers<CR>
-nnoremap <C-g> :GFiles<CR>
-nnoremap <C-f> :Rg 
+map <leader>p :Files<CR>
+map <leader>o :Buffers<CR>
+map <leader>g :GFiles<CR>
+map <leader>f :Rg 
 
 " these are really only used in Vim - neovim has reasonable defaults
 " Ps = 0  -> blinking block.
@@ -181,3 +185,5 @@ nnoremap <leader>tp o😶 [ ] - <esc>a
 
 " open vimrc in a splt for quick editing
 nnoremap <leader>ev :vsplit ~/.dotfiles/vim/.vimrc<cr>
+
+
