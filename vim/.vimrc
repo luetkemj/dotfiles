@@ -57,9 +57,7 @@ call plug#begin()
 
 " Make sure you use single quotes
 
-" color scheem cobalt2
-" Plug 'joshdick/onedark.vim'	
-Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 Plug 'pangloss/vim-javascript'
 Plug 'sheerun/vim-polyglot'
 Plug 'eslint/eslint'
@@ -111,6 +109,7 @@ let g:VimTodoListsKeepSameIndent = 0
 "
 " lightline 
 " 
+" lightline options
 " always show status bar (lightline) 
 set laststatus=2
 " lightline includes the mode so disable the default vim display
