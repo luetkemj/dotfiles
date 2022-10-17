@@ -83,6 +83,10 @@ set showcmd
 " allow yanking to sys clipboard (so I can yank and <C-v> outside of vim)
 set clipboard=unnamed
 
+" highlint current column and line (where the cursor is)
+set cursorline
+set cursorcolumn
+
 " these are really only used in Vim - neovim has reasonable defaults
 " Ps = 0  -> blinking block.
 " Ps = 1  -> blinking block (default).
@@ -133,10 +137,8 @@ nnoremap <leader>ev :vsplit ~/.dotfiles/vim/.vimrc<cr>
 " 
 " clear highlighting
 map <leader>h :noh<CR>
-" format file with prettier
-map <leader>f :Prettier<CR>
 " source vimrc (use after saving changes to vimrc so I don't have to manually
-" reastart)
+" restart)
 map <leader>r :so ~/.dotfiles/vim/.vimrc<CR>
 
 
