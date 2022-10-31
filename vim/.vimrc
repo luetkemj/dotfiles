@@ -16,23 +16,24 @@ call plug#begin()
 
 " Make sure you use single quotes
 
-Plug 'gruvbox-community/gruvbox'
-Plug 'pangloss/vim-javascript'
-Plug 'sheerun/vim-polyglot'
-Plug 'eslint/eslint'
-Plug 'dense-analysis/ale'
-Plug 'preservim/nerdtree'
-Plug 'itchyny/lightline.vim'
-Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'dense-analysis/ale'
+Plug 'eslint/eslint'
+Plug 'gruvbox-community/gruvbox'
+Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-commentary'
-Plug 'prettier/vim-prettier', { 'do': 'npm install --frozen-lockfile --production' }
-Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
 Plug 'mattn/webapi-vim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'pangloss/vim-javascript'
+Plug 'preservim/nerdtree'
+Plug 'prettier/vim-prettier', { 'do': 'npm install --frozen-lockfile --production' }
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 call plug#end()
 
 
@@ -159,9 +160,21 @@ function! MakeTodoEmojiIncomplete()
   normal! 0f[ls 
   normal! `z
 endfunction
+function! MakeTodoEmojiImportant()
+  normal! mz
+  normal! 0f-r🚨lx
+  normal! `z
+endfunction
+function! MakeTodoEmojiUnimportant()
+  normal! mz
+  normal! 0f]llr-a 
+  normal! `z
+endfunction
 
 nnoremap <leader>tt :call MakeTodoEmojiComplete()<cr>
 nnoremap <leader>tr :call MakeTodoEmojiIncomplete()<cr>
+nnoremap <leader>ti :call MakeTodoEmojiImportant()<cr>
+nnoremap <leader>tu :call MakeTodoEmojiUnimportant()<cr>
 nnoremap <leader>th o🏠 [ ] - <esc>a
 nnoremap <leader>tw o💻 [ ] - <esc>a
 nnoremap <leader>tp o😶 [ ] - <esc>a
@@ -211,7 +224,7 @@ let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'gitbranch', 'readonly', 'absolutepath', 'modified' ] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead'
