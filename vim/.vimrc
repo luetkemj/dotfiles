@@ -162,7 +162,7 @@ function! MakeTodoEmojiIncomplete()
 endfunction
 function! MakeTodoEmojiImportant()
   normal! mz
-  normal! 0f-r🚨lx
+  normal! 0f-r🐸lx
   normal! `z
 endfunction
 function! MakeTodoEmojiUnimportant()
